@@ -108,7 +108,7 @@ function IdentitySettings() {
   const active = list.find((i) => i.id === sigId);
 
   async function saveSig() { await window.API.saveIdentity({ ...active, signature: sig }); active.signature = sig; toast("签名已保存", { kind: "ok", icon: "check2" }); }
-  function makeDefault(id) { setList(list.map((i) => ({ ...i, isDefault: i.id === id }))); toast("已设为默认发件身份", { kind: "ok", icon: "check" }); /* Claude Code: PATCH /identities/:id { isDefault:true } */ }
+  function makeDefault(id) { setList(list.map((i) => ({ ...i, isDefault: i.id === id }))); window.API.saveIdentity({ id, isDefault: true }); toast("已设为默认发件身份", { kind: "ok", icon: "check" }); }
 
   return (
     <div>

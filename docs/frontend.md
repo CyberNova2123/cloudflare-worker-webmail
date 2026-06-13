@@ -42,6 +42,8 @@ const USE_MOCK = !window.__WEBMAIL_LIVE__;
   `bodyHtml`/`routing`/`attachments`——列表形状不含这些。
 - `mail.jsx` 阅读页用真实 `attachments` 渲染文件名/大小并提供下载链接（mock 下回退到
   占位卡片）。
+- `settings.jsx` 的「设为默认发件身份」改为持久化（`PATCH /identities/:id
+  { isDefault:true }`），不再只改本地状态。
 - 正文净化在**服务端**完成（`src/email/sanitize.ts`），阅读页直接渲染已净化的
   `bodyHtml`。
 
