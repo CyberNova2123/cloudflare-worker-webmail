@@ -1,0 +1,60 @@
+# wrangler.toml — Cloudflare Worker config for 魔法纪录复兴计划 WebMail.
+# See docs/deployment.md for the full step-by-step (Access app, D1, R2, Email
+# Routing rule, Email Sending DNS onboarding, secrets).
+
+name = "magireco-webmail"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+# `nodejs_compat` gives us Buffer/stream shims that mimetext + postal-mime expect.
+compatibility_flags = ["nodejs_compat"]
+
+# --- Static assets: the web/ SPA -------------------------------------------
+# run_worker_first=true so the Worker owns ALL routing: it enforces the /api
+# split, fixes content-types for .jsx, and SPA-falls-back unknown routes to
+# index.html. The Worker reads assets back through the ASSETS binding.
+[assets]
+directory = "./web"
+binding = "ASSETS"
+run_worker_first = true
+
+# --- Plain vars (non-secret; safe to commit) -------------------------------
+[vars]
+# Your Cloudflare Access team domain, e.g. "yourteam.cloudflareaccess.com".
+ACCESS_TEAM_DOMAIN = "yourteam.cloudflareaccess.com"
+# The Access application's Audience (AUD) tag — gates the JWT to THIS app.
+ACCESS_AUD = ""
+# Account id + zone, used by the Email Routing destinations REST proxy.
+CF_ACCOUNT_ID = ""
+# The domain mail is routed to / sent from (drives default identities & UI).
+PRIMARY_DOMAIN = "magireco.app"
+# Set to "1" ONLY for local `wrangler dev` to skip Access JWT verification.
+# MUST be unset/"0" in production.
+DEV_BYPASS_ACCESS = "0"
+
+# --- D1: message metadata, identities, profile, notifications --------------
+[[d1_databases]]
+binding = "DB"
+database_name = "webmail"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+# --- R2: raw MIME (.eml) + attachment blobs --------------------------------
+[[r2_buckets]]
+binding = "MAIL_BUCKET"
+bucket_name = "webmail-raw"
+
+# --- Email Sending (outbound) ----------------------------------------------
+# Bound name surfaces as env.SEND_EMAIL.send(EmailMessage). To restrict who you
+# can send to, add `allowed_destination_addresses = [...]`; left open here so
+# replies can reach any correspondent.
+[[send_email]]
+name = "SEND_EMAIL"
+
+# --- Inbound (Email Routing) -----------------------------------------------
+# There is NO binding for inbound. In the Cloudflare dashboard, point an Email
+# Routing rule (or the catch-all) at THIS Worker — that invokes the exported
+# `email()` handler. See docs/inbound.md.
+
+# --- Secrets (DO NOT put here) ---------------------------------------------
+# CF_API_TOKEN  -> `wrangler secret put CF_API_TOKEN`
+#   (token needs Account » Email Routing Addresses: Edit)
+# For local dev, put it in .dev.vars (gitignored). See .dev.vars.example.

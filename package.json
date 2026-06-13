@@ -1,0 +1,26 @@
+{
+  "name": "magireco-webmail",
+  "version": "0.1.0",
+  "private": true,
+  "description": "魔法纪录复兴计划 WebMail — a Cloudflare Worker webmail over Email Routing (inbound) + Email Sending (outbound), gated by Cloudflare Access.",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "build:web": "node scripts/build-web.mjs",
+    "db:init": "wrangler d1 execute webmail --remote --file=./schema.sql",
+    "db:init:local": "wrangler d1 execute webmail --local --file=./schema.sql"
+  },
+  "dependencies": {
+    "postal-mime": "^2.7.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260613.1",
+    "esbuild": "^0.28.1",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.100.0"
+  }
+}

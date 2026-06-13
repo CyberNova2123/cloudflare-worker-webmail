@@ -1,0 +1,10 @@
+# Copy to `.dev.vars` (gitignored) for `wrangler dev`. In production, set these
+# with `wrangler secret put <NAME>` instead — never commit real secrets.
+
+# Cloudflare API token used by the Email Routing destinations proxy.
+# Needs permission: Account » Email Routing Addresses » Edit.
+CF_API_TOKEN = "your-cloudflare-api-token"
+
+# Optional: skip Access JWT verification locally so you can hit /api without a
+# real CF_Authorization cookie. NEVER set this in production.
+DEV_BYPASS_ACCESS = "1"
