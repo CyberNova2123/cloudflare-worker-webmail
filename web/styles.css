@@ -1,0 +1,280 @@
+/* ============================================================================
+   魔法纪录复兴计划 WebMail — Design System
+   A single source of truth for the whole UI so nothing feels disjointed.
+   Theme is driven by [data-theme="light"|"dark"] on <html>.
+   ========================================================================== */
+
+:root {
+  /* Type */
+  --font-ui: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Radii */
+  --r-sm: 6px;
+  --r-md: 9px;
+  --r-lg: 13px;
+  --r-xl: 18px;
+
+  /* Spacing scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --fast: 110ms;
+  --med: 200ms;
+
+  /* Layout */
+  --rail-w: 232px;
+  --list-w: 372px;
+}
+
+/* ----------------------------------------------------------------- LIGHT -- */
+:root,
+[data-theme="light"] {
+  --bg: oklch(0.986 0.002 285);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.975 0.003 285);
+  --surface-hover: oklch(0.962 0.004 285);
+  --surface-active: oklch(0.945 0.006 295);
+  --border: oklch(0.918 0.004 285);
+  --border-strong: oklch(0.86 0.006 285);
+
+  --text: oklch(0.255 0.012 285);
+  --text-2: oklch(0.45 0.012 285);
+  --text-3: oklch(0.6 0.01 285);
+  --text-faint: oklch(0.72 0.008 285);
+
+  --accent: oklch(0.55 0.19 295);
+  --accent-text: oklch(0.5 0.2 295);
+  --accent-soft: oklch(0.95 0.035 295);
+  --accent-border: oklch(0.86 0.07 295);
+  --on-accent: oklch(0.99 0.005 295);
+
+  --green: oklch(0.62 0.15 155);
+  --green-soft: oklch(0.95 0.05 155);
+  --amber: oklch(0.72 0.15 75);
+  --amber-soft: oklch(0.95 0.06 80);
+  --red: oklch(0.58 0.2 22);
+  --red-soft: oklch(0.95 0.04 22);
+  --blue: oklch(0.6 0.16 250);
+
+  --shadow-sm: 0 1px 2px oklch(0.2 0.02 285 / 0.06), 0 1px 1px oklch(0.2 0.02 285 / 0.04);
+  --shadow-md: 0 4px 12px oklch(0.2 0.02 285 / 0.08), 0 1px 3px oklch(0.2 0.02 285 / 0.06);
+  --shadow-lg: 0 18px 50px oklch(0.2 0.02 285 / 0.16), 0 6px 16px oklch(0.2 0.02 285 / 0.1);
+  --shadow-pop: 0 12px 40px oklch(0.2 0.02 285 / 0.14);
+}
+
+/* ------------------------------------------------------------------ DARK -- */
+[data-theme="dark"] {
+  --bg: oklch(0.168 0.008 285);
+  --surface: oklch(0.205 0.009 285);
+  --surface-2: oklch(0.232 0.01 285);
+  --surface-hover: oklch(0.252 0.011 285);
+  --surface-active: oklch(0.285 0.018 295);
+  --border: oklch(0.285 0.011 285);
+  --border-strong: oklch(0.36 0.014 285);
+
+  --text: oklch(0.955 0.004 285);
+  --text-2: oklch(0.74 0.01 285);
+  --text-3: oklch(0.6 0.012 285);
+  --text-faint: oklch(0.5 0.012 285);
+
+  --accent: oklch(0.7 0.16 296);
+  --accent-text: oklch(0.78 0.15 296);
+  --accent-soft: oklch(0.3 0.06 296);
+  --accent-border: oklch(0.42 0.1 296);
+  --on-accent: oklch(0.16 0.02 296);
+
+  --green: oklch(0.74 0.15 158);
+  --green-soft: oklch(0.31 0.06 158);
+  --amber: oklch(0.8 0.13 78);
+  --amber-soft: oklch(0.33 0.06 78);
+  --red: oklch(0.68 0.18 22);
+  --red-soft: oklch(0.32 0.08 22);
+  --blue: oklch(0.7 0.14 250);
+
+  --shadow-sm: 0 1px 2px oklch(0 0 0 / 0.3);
+  --shadow-md: 0 6px 18px oklch(0 0 0 / 0.4);
+  --shadow-lg: 0 24px 60px oklch(0 0 0 / 0.55), 0 8px 20px oklch(0 0 0 / 0.4);
+  --shadow-pop: 0 16px 48px oklch(0 0 0 / 0.5);
+}
+
+/* --------------------------------------------------------------- RESET ---- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+#root { height: 100%; }
+button { font-family: inherit; cursor: pointer; }
+input, textarea, select, button { font-family: inherit; font-size: inherit; color: inherit; }
+::selection { background: var(--accent-soft); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 99px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--text-faint); background-clip: content-box; }
+
+/* --------------------------------------------------------------- ATOMS ---- */
+.kbd {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: var(--r-sm);
+  padding: 3px 5px;
+  min-width: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon { width: 16px; height: 16px; flex: none; stroke-width: 1.9; }
+.spin { animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.mono { font-family: var(--font-mono); }
+
+/* Buttons -------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  height: 32px; padding: 0 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 550; font-size: 13px;
+  white-space: nowrap;
+  transition: background var(--fast) var(--ease), border-color var(--fast), transform var(--fast);
+}
+.btn:hover { background: var(--surface-hover); }
+.btn:active { transform: translateY(0.5px); }
+.btn.ghost { border-color: transparent; background: transparent; color: var(--text-2); }
+.btn.ghost:hover { background: var(--surface-hover); color: var(--text); }
+.btn.primary {
+  background: var(--accent); color: var(--on-accent);
+  border-color: transparent; box-shadow: var(--shadow-sm);
+}
+.btn.primary:hover { background: oklch(from var(--accent) calc(l - 0.04) c h); }
+.btn.danger { color: var(--red); }
+.btn.danger:hover { background: var(--red-soft); border-color: transparent; }
+.btn.sm { height: 27px; padding: 0 9px; font-size: 12.5px; }
+.btn.icon-only { width: 32px; padding: 0; justify-content: center; }
+.btn.icon-only.sm { width: 27px; }
+.btn:disabled { opacity: 0.5; pointer-events: none; }
+
+/* Icon button (chrome) */
+.iconbtn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: var(--r-md);
+  border: none; background: transparent; color: var(--text-3);
+  transition: background var(--fast), color var(--fast);
+}
+.iconbtn:hover { background: var(--surface-hover); color: var(--text); }
+.iconbtn.active { background: var(--accent-soft); color: var(--accent-text); }
+
+/* Chips / badges ------------------------------------------------------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  height: 21px; padding: 0 8px;
+  border-radius: 99px; font-size: 11.5px; font-weight: 600;
+  background: var(--surface-2); color: var(--text-2);
+  border: 1px solid var(--border);
+}
+.chip.route { background: var(--accent-soft); color: var(--accent-text); border-color: var(--accent-border); }
+.chip.mono { font-family: var(--font-mono); font-size: 11px; letter-spacing: -0.2px; }
+.badge-dot { width: 7px; height: 7px; border-radius: 99px; background: var(--accent); flex: none; }
+
+.status { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; }
+.status .pip { width: 7px; height: 7px; border-radius: 99px; flex: none; }
+.status.ok { color: var(--green); }
+.status.ok .pip { background: var(--green); }
+.status.pending { color: var(--amber); }
+.status.pending .pip { background: var(--amber); }
+
+/* Avatar --------------------------------------------------------------- */
+.avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 99px; color: #fff; font-weight: 650;
+  flex: none; user-select: none; letter-spacing: 0.2px;
+}
+
+/* Inputs --------------------------------------------------------------- */
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field > label { font-size: 12px; font-weight: 600; color: var(--text-2); }
+.field .hint { font-size: 11.5px; color: var(--text-3); }
+.input, .textarea, .select {
+  width: 100%; background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: var(--r-md);
+  padding: 8px 11px; font-size: 13.5px;
+  transition: border-color var(--fast), box-shadow var(--fast);
+}
+.input:focus, .textarea:focus, .select:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+.input::placeholder, .textarea::placeholder { color: var(--text-faint); }
+
+/* Toggle switch -------------------------------------------------------- */
+.switch {
+  position: relative; width: 38px; height: 22px; border-radius: 99px;
+  background: var(--border-strong); border: none; padding: 0; flex: none;
+  transition: background var(--med) var(--ease);
+}
+.switch::after {
+  content: ""; position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px; border-radius: 99px; background: #fff;
+  box-shadow: var(--shadow-sm); transition: transform var(--med) var(--ease);
+}
+.switch.on { background: var(--accent); }
+.switch.on::after { transform: translateX(16px); }
+
+/* Cards / surfaces ----------------------------------------------------- */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.divider { height: 1px; background: var(--border); border: none; margin: 0; }
+
+/* Scroll regions ------------------------------------------------------- */
+.scroll { overflow-y: auto; overflow-x: hidden; }
+
+/* Utility -------------------------------------------------------------- */
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.row { display: flex; align-items: center; }
+.col { display: flex; flex-direction: column; }
+.grow { flex: 1; min-width: 0; }
+.muted { color: var(--text-3); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Animations ----------------------------------------------------------- */
+@keyframes pop-in { from { opacity: 0; transform: translateY(6px) scale(0.985); } to { opacity: 1; transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slide-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
