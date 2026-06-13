@@ -1,8 +1,8 @@
 {
-  "name": "magireco-webmail",
+  "name": "cloudflare-worker-webmail",
   "version": "0.1.0",
   "private": true,
-  "description": "魔法纪录复兴计划 WebMail — a Cloudflare Worker webmail over Email Routing (inbound) + Email Sending (outbound), gated by Cloudflare Access.",
+  "description": "WebMail — a Cloudflare Worker webmail over Email Routing (inbound) + Email Sending (outbound), gated by Cloudflare Access.",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "src/index.ts",

@@ -1,4 +1,4 @@
--- D1 schema for 魔法纪录复兴计划 WebMail.
+-- D1 schema for WebMail.
 -- Apply with:  npm run db:init        (remote / production D1)
 --              npm run db:init:local  (local wrangler dev)
 -- See docs/storage.md for the R2 key layout that complements these tables.
@@ -87,6 +87,6 @@ CREATE TABLE IF NOT EXISTS notifications (
 -- `verified=1` only for aliases whose domain is actually onboarded to Email
 -- Sending; an unverified alias shows greyed-out in the compose "from" picker.
 INSERT OR IGNORE INTO identities (id, name, email, is_default, verified, signature) VALUES
-  ('idn_1', '调查员 Kasen', 'kasen@magireco.app',    1, 1, '— Kasen' || char(10) || '魔法纪录复兴计划 · 神浜调查部'),
-  ('idn_2', '复兴计划支援',  'support@magireco.app',  0, 1, '魔法纪录复兴计划 · 支援窗口'),
-  ('idn_3', '活动通知',      'no-reply@magireco.app', 0, 0, '');
+  ('idn_1', 'Alex Morgan',   'alex@example.com',     1, 1, '— Alex'),
+  ('idn_2', 'Support',       'support@example.com',  0, 1, 'Support Team'),
+  ('idn_3', 'Notifications', 'no-reply@example.com', 0, 0, '');

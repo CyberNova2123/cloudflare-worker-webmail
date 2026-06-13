@@ -17,8 +17,8 @@
 当前登录用户（由 Access JWT 的 `email` 推导，合并 D1 档案）。
 
 ```json
-{ "id": "usr_ab12cd34ef", "name": "调查员 Kasen", "email": "kasen@magireco.app",
-  "avatarColor": "295", "primaryDomain": "magireco.app" }
+{ "id": "usr_ab12cd34ef", "name": "Alex Morgan", "email": "alex@example.com",
+  "avatarColor": "230", "primaryDomain": "example.com" }
 ```
 未认证 → 401（前端据此显示登录页）。
 
@@ -35,10 +35,10 @@
 ```json
 { "items": [ {
   "id":"m_...", "folder":"inbox",
-  "from":{"name":"环 いろは","email":"iroha@kamihama.jp"}, "to":"contact@magireco.app",
+  "from":{"name":"Sarah Lee","email":"sarah@example.org"}, "to":"contact@example.com",
   "subject":"…", "preview":"…", "date":"2026-06-13T03:00:00.000Z",
   "read":false, "starred":false, "hasAttachment":true, "attachmentCount":2,
-  "routedFrom":"contact@magireco.app", "routedVia":"cloudflare", "labels":[]
+  "routedFrom":"contact@example.com", "routedVia":"cloudflare", "labels":[]
 } ], "nextCursor": null }
 ```
 
@@ -51,7 +51,7 @@
 ```json
 { "...列表字段": "...",
   "bodyHtml":"<p>已净化的正文</p>", "bodyText":"…",
-  "routing":{ "to":"contact@magireco.app", "spf":"pass", "dkim":"pass", "dmarc":"pass" },
+  "routing":{ "to":"contact@example.com", "spf":"pass", "dkim":"pass", "dmarc":"pass" },
   "attachments":[ {"idx":0,"filename":"map.pdf","mimeType":"application/pdf","size":184320,
                    "url":"/api/messages/m_.../attachments/0"} ],
   "headers":{ "subject":"…","from":"…","to":"…","date":"…" } }
@@ -84,8 +84,8 @@ POST { "fromIdentityId":"idn_1", "to":["a@x.com"], "cc":[], "bcc":[],
 
 ### `GET /api/identities`
 ```json
-[ { "id":"idn_1","name":"调查员 Kasen","email":"kasen@magireco.app",
-    "isDefault":true,"verified":true,"signature":"— Kasen\n…" } ]
+[ { "id":"idn_1","name":"Alex Morgan","email":"alex@example.com",
+    "isDefault":true,"verified":true,"signature":"— Alex\n…" } ]
 ```
 
 ### `POST /api/identities`

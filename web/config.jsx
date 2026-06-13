@@ -9,9 +9,9 @@ window.CONFIG = {
      BRAND — change these to re-skin the whole client. (Requested config item.)
      ---------------------------------------------------------------------- */
   brand: {
-    name: "魔法纪录复兴计划 WebMail",   // full product name (sidebar header, login)
-    short: "魔纪 WebMail",              // compact name (mobile, tab title)
-    mark: "魔",                         // single glyph used in the logo lockup
+    name: "WebMail",                    // full product name (sidebar header, login)
+    short: "WebMail",                   // compact name (mobile, tab title)
+    mark: "M",                          // single glyph used in the logo lockup
     // Logo accent. The whole UI accent is the CSS var --accent (see styles.css);
     // keep this in sync if you change brand color.
     tagline: "Cloudflare Email Routing",

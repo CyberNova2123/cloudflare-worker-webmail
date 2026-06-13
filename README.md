@@ -1,14 +1,17 @@
-# 魔法纪录复兴计划 WebMail
+# WebMail
 
 > 一个**纯 Cloudflare Worker** 的域名邮箱客户端：用 **Email Routing** 收信、用
 > **Email Sending** 发信、用 **Cloudflare Access** 守护登录，全程无需自管服务器。
 
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/CyberNova2123/cloudflare-worker-webmail)
+
+> 一键部署会克隆本仓库、创建 Worker，并按 `wrangler.toml` 自动 provision D1 / R2
+> 等资源。部署后仍需**手动**完成：Cloudflare Access 应用、Email Routing 规则、
+> Email Sending 域名 onboarding，以及 secret（`CF_API_TOKEN`）——详见
+> [docs/deployment.md](docs/deployment.md)。
+
 前端是一个 React 单页应用，后端是同一个 Worker —— 它既托管静态资源，又在
 `/api/*` 下提供 JSON API，并通过 `email()` handler 接收入站邮件。
-
-| 登录（Cloudflare Access SSO） | 收件箱（路由感知） |
-|---|---|
-| ![login](docs/images/login.png) | ![inbox](docs/images/inbox.png) |
 
 ## 它能做什么
 

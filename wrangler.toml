@@ -1,8 +1,8 @@
-# wrangler.toml — Cloudflare Worker config for 魔法纪录复兴计划 WebMail.
+# wrangler.toml — Cloudflare Worker config for WebMail.
 # See docs/deployment.md for the full step-by-step (Access app, D1, R2, Email
 # Routing rule, Email Sending DNS onboarding, secrets).
 
-name = "magireco-webmail"
+name = "webmail"
 main = "src/index.ts"
 compatibility_date = "2024-11-01"
 # `nodejs_compat` gives us Buffer/stream shims that mimetext + postal-mime expect.
@@ -26,7 +26,7 @@ ACCESS_AUD = ""
 # Account id + zone, used by the Email Routing destinations REST proxy.
 CF_ACCOUNT_ID = ""
 # The domain mail is routed to / sent from (drives default identities & UI).
-PRIMARY_DOMAIN = "magireco.app"
+PRIMARY_DOMAIN = "example.com"
 # Set to "1" ONLY for local `wrangler dev` to skip Access JWT verification.
 # MUST be unset/"0" in production.
 DEV_BYPASS_ACCESS = "0"

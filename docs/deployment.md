@@ -1,7 +1,7 @@
 # 部署指南
 
 端到端把本 Worker 上线所需的全部步骤。前置：一个已托管在 Cloudflare 的域名
-（下文以 `magireco.app` 为例）、`wrangler` 已登录（`wrangler login`）。
+（下文以 `example.com` 为例）、`wrangler` 已登录（`wrangler login`）。
 
 ## 0. 安装
 
@@ -25,7 +25,7 @@ npm run db:init          # 对远程 D1 执行 schema.sql
 # 本地开发用： npm run db:init:local
 ```
 
-`schema.sql` 末尾**种子了几个示例发件身份**（`kasen@/support@/no-reply@magireco.app`）。
+`schema.sql` 末尾**种子了几个示例发件身份**（`alex@/support@/no-reply@example.com`）。
 上线前请按你的域名改掉，或直接在 D1 中管理：
 
 ```bash
@@ -38,7 +38,7 @@ wrangler d1 execute webmail --remote --command \
 ## 2. Cloudflare Access（登录网关）
 
 1. Zero Trust 控制台 → **Access → Applications → Add → Self-hosted**。
-2. 应用域名填 Worker 对外的主机名（如 `webmail.magireco.app`）。
+2. 应用域名填 Worker 对外的主机名（如 `webmail.example.com`）。
 3. 配置 Identity provider 与 Policy（谁可登录）。
 4. 记下两项，填进 `wrangler.toml` 的 `[vars]`：
    - **Team domain** → `ACCESS_TEAM_DOMAIN`，形如 `yourteam.cloudflareaccess.com`；
@@ -98,7 +98,7 @@ npm run deploy      # wrangler deploy
 
 1. 控制台 → **Email → Email Routing**，为域名启用并按提示加 MX/TXT 记录。
 2. 新建一条**路由规则**或 **catch-all**，动作选 **Send to a Worker**，目标选本
-   Worker（`magireco-webmail`）。这样发往该（些）别名的邮件就会触发 `email()`。
+   Worker（`webmail`）。这样发往该（些）别名的邮件就会触发 `email()`。
 3. （可选）若还想保留一份到真实邮箱，在 `src/email/inbound.ts` 里取消
    `message.forward("you@personal.example")` 的注释（该地址须是已验证的 destination）。
 

@@ -7,7 +7,7 @@
 
 ```
 ForwardableEmailMessage
-  message.to            ← 邮件被投递到的别名（如 hi@magireco.app）= routedFrom
+  message.to            ← 邮件被投递到的别名（如 hi@example.com）= routedFrom
   message.from          ← 信封发件人
   message.headers       ← Headers（含 Authentication-Results）
   message.raw           ← 原始 MIME 流（只可消费一次）
